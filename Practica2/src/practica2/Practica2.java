@@ -92,7 +92,6 @@ public class Practica2 {
                             nume2 = Double.parseDouble(numero2);
                             n2 = new Double(numero2);
                         }
-                        
                         res = n1 % n2;
                         break;
                 }
