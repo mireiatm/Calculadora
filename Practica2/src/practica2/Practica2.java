@@ -53,7 +53,7 @@ public class Practica2 {
                 numero2 = sc.nextLine();
             } while (!numero2.matches("[+-]?[\\d]*[.]?[\\d]+"));
             double nume2 = Double.parseDouble(numero2);
-            double n2 = new Double(numero2);
+            double n2 = new Double(numero2); 
 
             do {
                 comprobar = true;
