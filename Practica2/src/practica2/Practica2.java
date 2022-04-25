@@ -18,7 +18,7 @@ public class Practica2 {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double res = 0;
+        double res;
         String operacion;
         boolean comprobar = false;
 
@@ -32,11 +32,11 @@ public class Practica2 {
             double n1 = new Double(numero1);
 
             do {
-                
+
                 imprimir("\nOperació? (Indica el signe)\n+ = sumar \n- = restar \n"
                         + "x = multiplicar \n/ = dividir\n* = elevar primer num al segon num."
                         + "\n% = residu\n");
-                
+
                 operacion = sc.nextLine();
                 if (operacion.equals("+") || operacion.equals("-") || operacion.equals("x")
                         || operacion.equals("X") || operacion.equals("/") || operacion.equals("%")
@@ -57,48 +57,12 @@ public class Practica2 {
 
             do {
                 comprobar = true;
-                switch (operacion) {
-                    case "+":
-                        res = n1 + n2;
-                        break;
-                    case "-":
-                        res = n1 - n2;
-                        break;
-                    case "x":
-                    case "X":
-                        res = n1 * n2;
-                        break;
-                    case "/":
-                        while (n2 == 0) {
-                            do {
-                                System.err.println("\nAl denominador hi ha un zero \n"
-                                        + "per a evitar errors coloca un altre valor.");
-                                numero2 = sc.nextLine();
-                            } while (!numero2.matches("[+-]?[\\d]*[.]?[\\d]+"));
-                            nume2 = Double.parseDouble(numero2);
-                            n2 = new Double(numero2);
-                        }
-                        res = n1 / n2;
-                        break;
-                    case "*":
-                        res = Math.pow(n1, n2);
-                        break;
-                    case "%":
-                        while (n2 == 0) {
-                            do {
-                                System.err.println("\nAl denominador hi ha un zero \n"
-                                        + "per a evitar errors coloca un altre valor.");
-                                numero2 = sc.nextLine();
-                            } while (!numero2.matches("[+-]?[\\d]*[.]?[\\d]+"));
-                            nume2 = Double.parseDouble(numero2);
-                            n2 = new Double(numero2);
-                        }
-                        res = n1 % n2;
-                        break;
-                }
+
+               res = operarCalculadora(operacion, n1, n2);     
+
             } while (comprobar != true);
 
-            imprimir ("(" + numero1 + ") " + operacion + " (" + numero2 + ")" 
+            imprimir("(" + numero1 + ") " + operacion + " (" + numero2 + ")"
                     + " = " + res + "\n\nVols continuar operant?\n[s/n]");
 
             do {
@@ -118,10 +82,60 @@ public class Practica2 {
             } while (comprobar != true);
         } while (operacion.equals("s") || operacion.equals("S"));
     }
-    
-    public static void imprimir (String frase){
-        
+
+    public static void imprimir(String frase) {
+
         System.out.println(frase);
-        
+
+    }
+
+    public static double operarCalculadora(String operacion, double n1, double n2) {
+
+        double res = 0;
+        Scanner sc = new Scanner(System.in);
+        String numero2;
+        double nume2;
+
+        switch (operacion) {
+            case "+":
+                res = n1 + n2;
+                break;
+            case "-":
+                res = n1 - n2;
+                break;
+            case "x":
+            case "X":
+                res = n1 * n2;
+                break;
+            case "/":
+                while (n2 == 0) {
+                    do {
+                        System.err.println("\nAl denominador hi ha un zero \n"
+                                + "per a evitar errors coloca un altre valor.");
+                        numero2 = sc.nextLine();
+                    } while (!numero2.matches("[+-]?[\\d]*[.]?[\\d]+"));
+                    nume2 = Double.parseDouble(numero2);
+                    n2 = new Double(numero2);
+                }
+                res = n1 / n2;
+                break;
+            case "*":
+                res = Math.pow(n1, n2);
+                break;
+            case "%":
+                while (n2 == 0) {
+                    do {
+                        System.err.println("\nAl denominador hi ha un zero \n"
+                                + "per a evitar errors coloca un altre valor.");
+                        numero2 = sc.nextLine();
+                    } while (!numero2.matches("[+-]?[\\d]*[.]?[\\d]+"));
+                    nume2 = Double.parseDouble(numero2);
+                    n2 = new Double(numero2);
+                }
+                res = n1 % n2;
+                break;
+        }
+
+        return res;
     }
 }
